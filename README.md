@@ -4,6 +4,12 @@ Typed, composable rules for deterministic decisions, with short-circuit
 evaluation, explicit no-match results, async counterparts, and local traces.
 Requires Python 3.10 or later.
 
+[![CI](https://github.com/SoundBlaster/SpycificationCore/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/SoundBlaster/SpycificationCore/actions/workflows/ci.yml)
+![Package version](https://img.shields.io/badge/version-0.1.0-blue)
+![Python versions](https://img.shields.io/badge/python-3.10--3.14-blue)
+![Runtime dependencies](https://img.shields.io/badge/runtime%20dependencies-none-brightgreen)
+[![License](https://img.shields.io/github/license/SoundBlaster/SpycificationCore)](LICENSE)
+
 ```python
 from dataclasses import dataclass
 

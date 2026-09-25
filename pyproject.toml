@@ -39,6 +39,7 @@ specification_core = ["py.typed"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
+pythonpath = ["src"]
 
 [tool.ruff]
 target-version = "py310"
