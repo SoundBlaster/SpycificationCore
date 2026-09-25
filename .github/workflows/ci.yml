@@ -95,4 +95,4 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           ACTIVITY: save_coverage_data_files
           MINIMUM_GREEN: 90
-          MINIMUM_ORANGE: 85
+          MINIMUM_ORANGE: 87
