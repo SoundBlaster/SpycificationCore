@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime
 from types import MappingProxyType
-from typing import Callable, Generic, Iterable, TypeVar, final
+from typing import Generic, TypeVar, cast, final
 
 from ._trace import TraceRecorder, record
 
@@ -255,7 +256,7 @@ class FirstMatch(DecisionSpec[T, R]):
                     for later, (skipped_spec, _) in enumerate(self._pairs[index + 1 :], start=index + 1):
                         recorder.skipped(f"pair[{later}]:{skipped_spec.name}")
                 return MatchResult.match(result)
-        return MatchResult.match(self._fallback) if self._has_fallback else MatchResult.no_match()
+        return MatchResult.match(cast(R, self._fallback)) if self._has_fallback else MatchResult.no_match()
 
 
 @final

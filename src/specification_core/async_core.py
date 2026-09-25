@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Awaitable, Callable, Generic, Iterable, TypeVar, final
+from collections.abc import Awaitable, Callable, Iterable
+from typing import Generic, TypeVar, cast, final
 
 from ._trace import TraceRecorder, record_async
 from .core import MatchResult, Specification
@@ -84,7 +85,12 @@ class AsyncPredicateSpec(AsyncSpecification[T]):
 class AsyncAndSpecification(AsyncSpecification[T]):
     __slots__ = ("_left", "_right")
 
-    def __init__(self, left: Specification[T] | AsyncSpecification[T], right: Specification[T] | AsyncSpecification[T], name: str = "AND") -> None:
+    def __init__(
+        self,
+        left: Specification[T] | AsyncSpecification[T],
+        right: Specification[T] | AsyncSpecification[T],
+        name: str = "AND",
+    ) -> None:
         super().__init__(name)
         self._left, self._right = left, right
         self._seal()
@@ -101,7 +107,12 @@ class AsyncAndSpecification(AsyncSpecification[T]):
 class AsyncOrSpecification(AsyncSpecification[T]):
     __slots__ = ("_left", "_right")
 
-    def __init__(self, left: Specification[T] | AsyncSpecification[T], right: Specification[T] | AsyncSpecification[T], name: str = "OR") -> None:
+    def __init__(
+        self,
+        left: Specification[T] | AsyncSpecification[T],
+        right: Specification[T] | AsyncSpecification[T],
+        name: str = "OR",
+    ) -> None:
         super().__init__(name)
         self._left, self._right = left, right
         self._seal()
@@ -184,7 +195,7 @@ class AsyncFirstMatch(AsyncDecisionSpec[T, R]):
                     for later, (omitted, _) in enumerate(self._pairs[index + 1 :], start=index + 1):
                         recorder.skipped(f"pair[{later}]:{omitted.name}")
                 return MatchResult.match(result)
-        return MatchResult.match(self._fallback) if self._has_fallback else MatchResult.no_match()
+        return MatchResult.match(cast(R, self._fallback)) if self._has_fallback else MatchResult.no_match()
 
 
 @final

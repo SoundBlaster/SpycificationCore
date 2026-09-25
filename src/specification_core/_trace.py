@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import asyncio
+from collections.abc import Awaitable, Callable
 from contextvars import ContextVar
 from dataclasses import dataclass
 from enum import Enum
-import asyncio
 from threading import RLock
 from time import perf_counter_ns
-from typing import Awaitable, Callable, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
@@ -74,7 +75,11 @@ class TraceRecorder:
             return result
         except BaseException as error:
             error_type = type(error).__name__
-            outcome = TraceOutcome.CANCELLED if isinstance(error, (asyncio.CancelledError, KeyboardInterrupt, SystemExit)) else TraceOutcome.FAILED
+            outcome = (
+                TraceOutcome.CANCELLED
+                if isinstance(error, (asyncio.CancelledError, KeyboardInterrupt, SystemExit))
+                else TraceOutcome.FAILED
+            )
             raise
         finally:
             duration = perf_counter_ns() - started
@@ -99,7 +104,11 @@ class TraceRecorder:
             return result
         except BaseException as error:
             error_type = type(error).__name__
-            outcome = TraceOutcome.CANCELLED if isinstance(error, (asyncio.CancelledError, KeyboardInterrupt, SystemExit)) else TraceOutcome.FAILED
+            outcome = (
+                TraceOutcome.CANCELLED
+                if isinstance(error, (asyncio.CancelledError, KeyboardInterrupt, SystemExit))
+                else TraceOutcome.FAILED
+            )
             raise
         finally:
             duration = perf_counter_ns() - started
