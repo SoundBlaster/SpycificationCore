@@ -31,4 +31,4 @@
 - Use the repository's SSH remote for Git operations and `gh` for pull request and CI operations.
 - Open a pull request for completed changes. Include a concise description and the checks actually run.
 - Before merging, confirm required checks pass, review feedback is addressed, and the PR is mergeable. Use the repository's established merge method.
-- For long-running CI or other processes, use the `no-wait` skill: keep the process running and wait in longer intervals instead of repeatedly polling.
+- For long-running CI or other processes, keep the command in an active terminal session and wait there using longer intervals (typically 30–60 seconds). Avoid repeated short polling; after two unchanged observations, lengthen the interval or investigate a concrete blocker.
