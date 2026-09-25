@@ -5,6 +5,7 @@ evaluation, explicit no-match results, async counterparts, and local traces.
 Requires Python 3.10 or later.
 
 [![CI](https://github.com/SoundBlaster/SpycificationCore/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/SoundBlaster/SpycificationCore/actions/workflows/ci.yml)
+[![Coverage](https://raw.githubusercontent.com/SoundBlaster/SpycificationCore/python-coverage-comment-action-data/badge.svg)](https://github.com/SoundBlaster/SpycificationCore/tree/python-coverage-comment-action-data)
 ![Package version](https://img.shields.io/badge/version-0.1.0-blue)
 ![Python versions](https://img.shields.io/badge/python-3.10--3.14-blue)
 ![Runtime dependencies](https://img.shields.io/badge/runtime%20dependencies-none-brightgreen)
