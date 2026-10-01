@@ -54,7 +54,7 @@ class PromotionState(Enum):
     READY = "ready"
 
 
-promotion = FirstMatch.with_fallback(
+promotion: FirstMatch[PromotionContext, PromotionState] = FirstMatch.with_fallback(
     [
         (PredicateSpec(lambda c: c.is_blocked, "report.blocked"), PromotionState.BLOCKED),
         (
